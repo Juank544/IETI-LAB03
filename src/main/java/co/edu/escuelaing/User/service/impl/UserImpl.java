@@ -15,7 +15,7 @@ public class UserImpl implements UserService {
 
     @Override
     public User create(User newUser) {
-        User user = users.putIfAbsent(newUser.getId(),newUser);
+        User user = users.put(newUser.getId(),newUser);
         return user;
     }
 
