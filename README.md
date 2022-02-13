@@ -512,7 +512,7 @@ public class SecurityConfiguration
       ```properties
          Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MTMwZmMzMWYwNTk2YzE0YzRiOWY5NTMiLCJhZGFfcm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE2MzA2MDAzMjAsImV4cCI6MTYzMDY4NjcyMH0.s29NZMHYDCsCXqj9W9ZajNnlwyzW4qJG832Z3PXhwhk
       ```
-#### ¿Qué es JWT?
+## ¿Qué es JWT?
 
 Cuando un cliente de API intenta acceder a un recurso protegido, este debe incluir un JWT. Un JWT es un token de acceso basado en JSON enviado en una solicitud HTTP de un cliente de API.
 
@@ -521,3 +521,6 @@ Un JWT se caracteriza por:
 * Una cabecera que identifica el tipo de token y el algoritmo criptográfico utilizado para generar la firma.
 * Una carga útil, que contiene reclamaciones sobre la identidad del usuario final y las propiedades del propio JWT.
 * Una firma para validar la autenticidad del JWT.
+
+#### Referencias
+[Docs Oracle](https://docs.oracle.com/es-ww/iaas/Content/APIGateway/Tasks/apigatewayusingjwttokens.htm)
