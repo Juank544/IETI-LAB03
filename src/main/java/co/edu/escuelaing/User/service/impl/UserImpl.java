@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Service
+//@Service
 public class UserImpl implements UserService {
     private final ConcurrentHashMap<String,User> users = new ConcurrentHashMap<>();
 
