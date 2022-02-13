@@ -4,6 +4,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+import java.util.UUID;
+
 @Document
 public class User {
     @Id
@@ -15,6 +18,8 @@ public class User {
     private String createdAt;
 
     public User() {
+        this.id = UUID.randomUUID().toString();
+        this.createdAt = String.valueOf(new Date());
     }
 
     public String getId() {

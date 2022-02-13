@@ -8,10 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,8 +16,6 @@ import java.util.logging.Logger;
 @RequestMapping("/v1/user")
 public class UserController {
     private final UserService userService;
-    private final AtomicInteger count = new AtomicInteger(0);
-    private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm:ss");
 
     public UserController(@Autowired UserService userService){
         this.userService = userService;
@@ -50,13 +45,10 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> create( @RequestBody UserDto userDto ) {
         try {
-            LocalDateTime now = LocalDateTime.now();
             User user = new User();
-            user.setId(String.valueOf(count.incrementAndGet()));
             user.setName(userDto.getName());
             user.setEmail(userDto.getEmail());
             user.setLastName(userDto.getLastName());
-            user.setCreatedAt(dtf.format(now));
             userService.create(user);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
