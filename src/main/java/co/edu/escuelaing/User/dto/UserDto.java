@@ -6,6 +6,7 @@ public class UserDto implements Serializable {
     private String name;
     private String email;
     private String lastName;
+    private String password;
 
     public String getName() {
         return name;
@@ -29,5 +30,9 @@ public class UserDto implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

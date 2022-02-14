@@ -45,7 +45,8 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> create( @RequestBody UserDto userDto ) {
         try {
-            User user = new User();
+            // Revisar!
+            User user = new User(userDto);
             user.setName(userDto.getName());
             user.setEmail(userDto.getEmail());
             user.setLastName(userDto.getLastName());

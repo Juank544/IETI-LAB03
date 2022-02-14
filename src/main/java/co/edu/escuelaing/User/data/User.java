@@ -1,10 +1,13 @@
 package co.edu.escuelaing.User.data;
 
+import co.edu.escuelaing.User.dto.UserDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Document
@@ -16,10 +19,13 @@ public class User {
     private String email;
     private String lastName;
     private String createdAt;
+    private String passwordHash;
+    private List<RoleEnum> roles;
 
-    public User() {
+    public User(UserDto userDto) {
         this.id = UUID.randomUUID().toString();
         this.createdAt = String.valueOf(new Date());
+        this.passwordHash = BCrypt.hashpw(userDto.getPassword(), BCrypt.gensalt());
     }
 
     public String getId() {
@@ -60,5 +66,13 @@ public class User {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public List<RoleEnum> getRoles() {
+        return roles;
     }
 }
