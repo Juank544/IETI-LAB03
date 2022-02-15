@@ -24,8 +24,14 @@ public class User {
 
     public User(UserDto userDto) {
         this.id = UUID.randomUUID().toString();
+        this.name = userDto.getName();
+        this.email = userDto.getEmail();
+        this.lastName = userDto.getLastName();
         this.createdAt = String.valueOf(new Date());
         this.passwordHash = BCrypt.hashpw(userDto.getPassword(), BCrypt.gensalt());
+    }
+
+    public User() {
     }
 
     public String getId() {

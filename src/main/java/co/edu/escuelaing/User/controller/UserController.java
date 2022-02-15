@@ -45,11 +45,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> create( @RequestBody UserDto userDto ) {
         try {
-            // Revisar!
             User user = new User(userDto);
-            user.setName(userDto.getName());
-            user.setEmail(userDto.getEmail());
-            user.setLastName(userDto.getLastName());
             userService.create(user);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
