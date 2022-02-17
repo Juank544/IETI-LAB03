@@ -4,6 +4,7 @@ import co.edu.escuelaing.User.data.User;
 import co.edu.escuelaing.User.repository.UserRepository;
 import co.edu.escuelaing.User.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,15 +36,15 @@ public class UserServiceMongoDB implements UserService {
     }
 
     @Override
-    public User update(User oldUser, String id) {
-        User newUser = userRepository.findById(id).orElse(null);
-        if (newUser!=null){
-            newUser.setName(oldUser.getName());
-            newUser.setEmail(oldUser.getEmail());
-            newUser.setLastName(oldUser.getLastName());
-            return userRepository.save(newUser);
+    public User update(User newUser, String id) {
+        User user = userRepository.findById(id).orElseThrow(null);
+        user.setName(newUser.getName());
+        user.setEmail(newUser.getEmail());
+        user.setLastName(newUser.getLastName());
+        if (newUser.getPasswordHash() != null){
+            user.setPasswordHash(BCrypt.hashpw(newUser.getPasswordHash(), BCrypt.gensalt()));
         }
-        return null;
+        return userRepository.save(user);
     }
 
     @Override

@@ -78,6 +78,10 @@ public class User {
         return passwordHash;
     }
 
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
     public List<RoleEnum> getRoles() {
         return roles;
     }

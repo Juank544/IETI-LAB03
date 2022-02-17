@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -57,10 +58,12 @@ public class UserController {
     @PutMapping( "/{id}" )
     public ResponseEntity<User> update( @RequestBody UserDto userDto, @PathVariable String id ) {
         try {
+            // TODO: desacoplar esto!
             User user = userService.findById(id);
             user.setName(userDto.getName());
             user.setEmail(userDto.getEmail());
             user.setLastName(userDto.getLastName());
+            user.setPasswordHash(userDto.getPassword());
             userService.update(user,id);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (Exception e) {
@@ -70,6 +73,7 @@ public class UserController {
     }
 
     @DeleteMapping( "/{id}" )
+    @RolesAllowed("ADMIN")
     public ResponseEntity<Boolean> delete( @PathVariable String id ) {
         try {
             userService.deleteById(id);
