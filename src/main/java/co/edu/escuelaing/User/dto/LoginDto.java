@@ -1,7 +1,7 @@
 package co.edu.escuelaing.User.dto;
 
 public class LoginDto {
-    String email;
+    public String email;
     public String password;
 
     public LoginDto(String email, String password) {

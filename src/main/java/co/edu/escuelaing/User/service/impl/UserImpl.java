@@ -52,4 +52,9 @@ public class UserImpl implements UserService {
         }
         return user;
     }
+
+    @Override
+    public User findByEmail(String email) {
+        return null;
+    }
 }
